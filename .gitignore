@@ -1,0 +1,10 @@
+# Exclude *~ files and the linux bin. Also added an exclude line to exclude windows bin.
+*~
+sueca
+sueca.exe
+main.exe
+Main.exe
+.anjuta
+.anjuta_sym_db.db
+TODO.tasks
+sueca.anjuta

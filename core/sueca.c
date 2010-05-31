@@ -51,3 +51,36 @@ char * get_naipe(cartas carta){
     break;
     }
 }
+
+void preencher_dados_jogador(jogadores *jogador, int n){
+    int sexo_jogador;
+    int i;
+    
+    for(i = 0 ; i < n ; i++){
+        printf("\nEntre com o nome do jogador %d:\n", (i + 1));
+        scanf("%s", jogador[i].nome);
+        //gets(jogador[i].nome);
+        printf("\nEntre com o sexo do jogador %d: (1 = Masculino, 2 = Feminino)\n", (i + 1));
+        scanf("%d", &sexo_jogador);
+        if(sexo_jogador == 1)
+            jogador[i].jogador_sexo = masculino;
+        else if(sexo_jogador == 2)
+            jogador[i].jogador_sexo = feminino;
+    }
+}
+
+void jogar_sueca(jogadores *jogador, cartas *baralho){
+    jogador->ultima_carta = *baralho;
+    printf("\n\nO jogador %s tirou a carta: %s%d%s", jogador->nome, get_naipe(jogador->ultima_carta), jogador->ultima_carta.numero, get_naipe(jogador->ultima_carta));
+    printf("\nEle deve...\n\n");
+    switch(jogador->ultima_carta.numero){
+        case 1:
+            break;
+        case 2:
+            break;
+        default:
+            break;
+    }
+}
+
+

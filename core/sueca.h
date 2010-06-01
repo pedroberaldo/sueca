@@ -18,6 +18,7 @@ typedef struct cartas cartas;
 
 struct jogadores{
     char nome[100];
+	int qnt_doses = 0;
     sexo jogador_sexo;
     cartas ultima_carta;
     };

@@ -69,26 +69,25 @@ void preencher_dados_jogador(jogadores *jogador, int n){
     }
 }
 
+
 void jogar_sueca(jogadores *jogador, cartas *baralho){
     jogador->ultima_carta = *baralho;
 	if (jogador->ultima_carta.numero == 11){
-		//jogador->ultima_carta.numero = 'J';
 		printf("\n\nO jogador %s tirou a carta: %sJ%s", jogador->nome, get_naipe(jogador->ultima_carta), get_naipe(jogador->ultima_carta));
 	}
 	else if (jogador->ultima_carta.numero == 12){
-		//jogador->ultima_carta.numero = 'Q';
 		printf("\n\nO jogador %s tirou a carta: %sQ%s", jogador->nome, get_naipe(jogador->ultima_carta), get_naipe(jogador->ultima_carta));
 	}
 		else if (jogador->ultima_carta.numero == 13){
-		//jogador->ultima_carta.numero = 'K';
 			printf("\n\nO jogador %s tirou a carta: %sK%s", jogador->nome, get_naipe(jogador->ultima_carta), get_naipe(jogador->ultima_carta));
 		}
 	else	
-    	printf("\n\nO jogador %s tirou a carta: %s%d%s", jogador->nome, get_naipe(jogador->ultima_carta), jogador->ultima_carta.numero, get_naipe(jogador->ultima_carta));
-    switch(jogador->ultima_carta.numero){
+    	printf("\n\nO jogador %s tirou a carta: %s%d%s", jogador->nome, get_naipe(jogador->ultima_carta), jogador->ultima_carta.numero, get_naipe(jogador->ultima_carta));	
+    switch(jogador->ultima_carta.numero){		
         case 1:printf("\nEle beber uma dose\n\n");
+			jogador->qnt_doses++;
             break;
-        case 2:printf("\nEle distribui duas doses\n\n");
+        case 2:printf("\nEle distribui duas doses\n");			
             break;
 		case 3:printf("\nEle distribui três doses\n\n");
 			break;

@@ -15,7 +15,7 @@ void iniciar_baralho(cartas *baralho){
             baralho[i].naipe = copas;
         else
             baralho[i].naipe = paus;
-    }
+	}
 }
 
 void embaralhar_cartas(cartas *baralho){
@@ -71,13 +71,47 @@ void preencher_dados_jogador(jogadores *jogador, int n){
 
 void jogar_sueca(jogadores *jogador, cartas *baralho){
     jogador->ultima_carta = *baralho;
-    printf("\n\nO jogador %s tirou a carta: %s%d%s", jogador->nome, get_naipe(jogador->ultima_carta), jogador->ultima_carta.numero, get_naipe(jogador->ultima_carta));
-    printf("\nEle deve...\n\n");
+	if (jogador->ultima_carta.numero == 11){
+		//jogador->ultima_carta.numero = 'J';
+		printf("\n\nO jogador %s tirou a carta: %sJ%s", jogador->nome, get_naipe(jogador->ultima_carta), get_naipe(jogador->ultima_carta));
+	}
+	else if (jogador->ultima_carta.numero == 12){
+		//jogador->ultima_carta.numero = 'Q';
+		printf("\n\nO jogador %s tirou a carta: %sQ%s", jogador->nome, get_naipe(jogador->ultima_carta), get_naipe(jogador->ultima_carta));
+	}
+		else if (jogador->ultima_carta.numero == 13){
+		//jogador->ultima_carta.numero = 'K';
+			printf("\n\nO jogador %s tirou a carta: %sK%s", jogador->nome, get_naipe(jogador->ultima_carta), get_naipe(jogador->ultima_carta));
+		}
+	else	
+    	printf("\n\nO jogador %s tirou a carta: %s%d%s", jogador->nome, get_naipe(jogador->ultima_carta), jogador->ultima_carta.numero, get_naipe(jogador->ultima_carta));
     switch(jogador->ultima_carta.numero){
-        case 1:
+        case 1:printf("\nEle beber uma dose\n\n");
             break;
-        case 2:
+        case 2:printf("\nEle distribui duas doses\n\n");
             break;
+		case 3:printf("\nEle distribui três doses\n\n");
+			break;
+		case 4:printf("\nEle pode sair para o banheiro quando quiser\n\n");
+			break;
+		case 5:printf("\nEle escolhe uma marca, e o próximo jogador, se errar a sequencia logica da marca, toma uma dose\n\n");
+			break;
+		case 6:printf("\nEle fala uma palavra para qualquer outro jogador, sem rir e sem mostrar os dentes, até que alguem ria. Quem rir toma uma dose. Sugestão de palavra : 'Maristela'\n\n");
+			break;
+		case 7:printf("\nEle começar a contar o números. Cada jogador conta um número. Mas nas vezes dos múltiplos de 7 e dos terminados em 7, deve-se falar a palavra PIN. Quem errar, toma uma dose\n\n");
+            break;
+		case 8:printf("\nbeber uma dose\n\n");
+            break;
+		case 9:printf("\nbeber uma dose\n\n");
+            break;
+		case 10:printf("\nbeber uma dose\n\n");
+            break;
+		case 11:printf("\nHomens bebem\n\n");
+            break;
+		case 12:printf("\nMulheres Bebem\n\n");
+            break;
+		case 13:printf("\nTodos Bebem\n\n");
+            break;		
         default:
             break;
     }

@@ -76,6 +76,7 @@ void jogar_sueca(jogadores *jogador, cartas *baralho){
         printf("\n\nA jogadora %s tirou a carta: %s%d%s", jogador->nome, get_naipe(jogador->ultima_carta), jogador->ultima_carta.numero, get_naipe(jogador->ultima_carta));
         printf("\nEla deve...\n\n");
     }
+    /* Aqui a baixo devem ir as opções de o que cada carta significa */
     switch(jogador->ultima_carta.numero){
         case 1:
             break;

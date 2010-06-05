@@ -71,8 +71,13 @@ void preencher_dados_jogador(jogadores *jogador, int n){
 
 void jogar_sueca(jogadores *jogador, cartas *baralho){
     jogador->ultima_carta = *baralho;
-    printf("\n\nO jogador %s tirou a carta: %s%d%s", jogador->nome, get_naipe(jogador->ultima_carta), jogador->ultima_carta.numero, get_naipe(jogador->ultima_carta));
-    printf("\nEle deve...\n\n");
+    if(jogador->jogador_sexo == masculino){
+        printf("\n\nO jogador %s tirou a carta: %s%d%s", jogador->nome, get_naipe(jogador->ultima_carta), jogador->ultima_carta.numero, get_naipe(jogador->ultima_carta));
+        printf("\nEle deve...\n\n");
+    }else{
+        printf("\n\nA jogadora %s tirou a carta: %s%d%s", jogador->nome, get_naipe(jogador->ultima_carta), jogador->ultima_carta.numero, get_naipe(jogador->ultima_carta));
+        printf("\nEla deve...\n\n");
+    }
     switch(jogador->ultima_carta.numero){
         case 1:
             break;

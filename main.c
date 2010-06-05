@@ -13,12 +13,11 @@ int main(void){
 
     jogador = malloc(numero_jogadores * sizeof(jogadores));
 
-    preencher_dados_jogador(jogador, numero_jogadores);
+    for(i = 0 ; i < numero_jogadores ; i++){
+        preencher_dados_jogador(&jogador[i], (i + 1));
+    }
 
-    printf("\nEntre com uma das opções à seguir:");
-    printf("\n1- Jogar:");
-    printf("\n2- Sair:\n");
-    scanf("%d", &opcao);
+    print_opcoes(&opcao);
     
     for(i = 0 ;  ; i++){
         if(i % NUMERO_DE_CARTAS == 0 && i != 0){
@@ -29,14 +28,15 @@ int main(void){
             case 1:
                 jogar_sueca(&jogador[i % numero_jogadores], baralho + (i % NUMERO_DE_CARTAS));
                 break;
+            case 2:
+                inserir_jogador(jogador, &numero_jogadores);
+                break;
+            case 3:
             default:
                 exit(EXIT_SUCCESS);
                 break;
         }
-        printf("\nEntre com uma das opções à seguir:");
-        printf("\n1- Jogar:");
-        printf("\n2- Sair:");
-        scanf("%d", &opcao);
+        print_opcoes(&opcao);
     }
 
     exit(EXIT_SUCCESS);

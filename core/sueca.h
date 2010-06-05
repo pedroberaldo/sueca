@@ -23,10 +23,13 @@ struct jogadores{
     };
 typedef struct jogadores jogadores;
 
-void iniciar_baralho(cartas *baralho);
-void embaralhar_cartas(cartas *baralho);
-char * get_naipe(cartas carta);
+void iniciar_baralho(cartas *);
+void embaralhar_cartas(cartas *);
+char * get_naipe(cartas );
 
-void preencher_dados_jogador(jogadores *jogador, int n);
+void preencher_dados_jogador(jogadores *, int );
 
-void jogar_sueca(jogadores *jogador, cartas *baralho);
+void print_opcoes(int *);
+
+void jogar_sueca(jogadores *, cartas *);
+void inserir_jogador(jogadores *, int *);

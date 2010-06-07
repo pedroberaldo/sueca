@@ -24,8 +24,8 @@ void embaralhar_cartas(cartas *baralho){
     srand (time(NULL));
 
     for(i = 0 ; i < 10000 ; i++){
-        rand1 = rand() % 52;
-        rand2 = rand() % 52;
+        rand1 = rand() % NUMERO_DE_CARTAS;
+        rand2 = rand() % NUMERO_DE_CARTAS;
         carta_tmp = baralho[rand1];
         baralho[rand1] = baralho[rand2];
         baralho[rand2] = carta_tmp;
@@ -54,24 +54,23 @@ char * get_naipe(cartas carta){
 
 void preencher_dados_jogador(jogadores *jogador, int n){
     int sexo_jogador;
-    int i;
     
-    for(i = 0 ; i < n ; i++){
-        printf("\nEntre com o nome do jogador %d:\n", (i + 1));
-        scanf("%s", jogador[i].nome);
-        //gets(jogador[i].nome);
-        printf("\nEntre com o sexo do jogador %d: (1 = Masculino, 2 = Feminino)\n", (i + 1));
-        scanf("%d", &sexo_jogador);
-        if(sexo_jogador == 1)
-            jogador[i].jogador_sexo = masculino;
-        else if(sexo_jogador == 2)
-            jogador[i].jogador_sexo = feminino;
-    }
+    printf("\nEntre com o nome do jogador %d:\n", n);
+    scanf("%s", jogador->nome);
+    //gets(jogador[i].nome);
+    printf("\nEntre com o sexo do jogador %d: (1 = Masculino, 2 = Feminino)\n", n);
+    scanf("%d", &sexo_jogador);
+    if(sexo_jogador == 1)
+        jogador->jogador_sexo = masculino;
+    else if(sexo_jogador == 2)
+        jogador->jogador_sexo = feminino;
+
 }
 
 
 void jogar_sueca(jogadores *jogador, cartas *baralho){
     jogador->ultima_carta = *baralho;
+
 	if (jogador->ultima_carta.numero == 11){
 		printf("\n\nO jogador %s tirou a carta: %sJ%s", jogador->nome, get_naipe(jogador->ultima_carta), get_naipe(jogador->ultima_carta));
 	}
@@ -99,11 +98,11 @@ void jogar_sueca(jogadores *jogador, cartas *baralho){
 			break;
 		case 7:printf("\nEle começar a contar o números. Cada jogador conta um número. Mas nas vezes dos múltiplos de 7 e dos terminados em 7, deve-se falar a palavra PIN. Quem errar, toma uma dose\n\n");
             break;
-		case 8:printf("\nbeber uma dose\n\n");
+		case 8:printf("\nEscolha uma regra individual\n\n");
             break;
-		case 9:printf("\nbeber uma dose\n\n");
+		case 9:printf("\nInverte a ordem dos jogadores\n\n");
             break;
-		case 10:printf("\nbeber uma dose\n\n");
+		case 10:printf("\nEscolha uma regra geral\n\n");
             break;
 		case 11:printf("\nHomens bebem\n\n");
             break;
@@ -116,4 +115,16 @@ void jogar_sueca(jogadores *jogador, cartas *baralho){
     }
 }
 
+void inserir_jogador(jogadores *jogador, int *numero_jogadores){
+    jogador = realloc(jogador, ++*numero_jogadores * sizeof(jogadores));
+    preencher_dados_jogador(&jogador[*numero_jogadores - 1], *numero_jogadores);
+}
 
+void print_opcoes(int *opcao){
+    printf("\nEntre com uma das opções à seguir:");
+    printf("\n1- Jogar:");
+    printf("\n2- Inserir um Jogador:");
+    printf("\n3- Sair:");
+    printf("\n");
+    scanf("%d", opcao);
+}

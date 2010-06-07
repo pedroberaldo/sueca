@@ -1,7 +1,7 @@
 #include "core/sueca.h"
 
 int main(void){
-    int i, numero_jogadores, opcao;
+    int i, numero_jogadores, opcao, opcao_final_cartas;
     jogadores *jogador;
     cartas baralho[NUMERO_DE_CARTAS];
     
@@ -13,49 +13,41 @@ int main(void){
 
     jogador = malloc(numero_jogadores * sizeof(jogadores));
 
-    preencher_dados_jogador(jogador, numero_jogadores);
+    for(i = 0 ; i < numero_jogadores ; i++){
+        preencher_dados_jogador(&jogador[i], (i + 1));
+    }
 
-    printf("\nEntre com uma das opções à seguir:");
-    printf("\n1- Jogar:");
-    printf("\n2- Sair:\n");
-    scanf("%d", &opcao);
+    print_opcoes(&opcao);
     
     for(i = 0 ;  ; i++){
-        if(i % NUMERO_DE_CARTAS == 0 && i != 0){
-            printf("\nFim das cartas...reembaralhando....\n");
-            embaralhar_cartas(baralho);
-        }
         switch(opcao){
             case 1:
                 jogar_sueca(&jogador[i % numero_jogadores], baralho + (i % NUMERO_DE_CARTAS));
                 break;
+            case 2:
+                inserir_jogador(jogador, &numero_jogadores);
+                break;
+            case 3:
             default:
                 exit(EXIT_SUCCESS);
                 break;
         }
-        printf("\nEntre com uma das opções à seguir:");
-        printf("\n1- Jogar:");
-        printf("\n2- Sair:");
-        scanf("%d", &opcao);
+        if(i % NUMERO_DE_CARTAS == 0 && i != 0){
+            printf("\nO baralho chegou ao fim..Deseja reembaralhar as cartas e continuar jogando? (1 = Sim, 2 = Não)\n");
+            scanf("%d", &opcao_final_cartas);
+            switch(opcao_final_cartas){
+                case 1:
+                    embaralhar_cartas(baralho);
+                    printf("\nO cartas foram embaralhadas novamente!!\n");
+                    break;
+                case 2:
+                default:
+                    exit(EXIT_SUCCESS);
+                    break;
+            }
+        }
+        print_opcoes(&opcao);
     }
 
-
-    /* ROTINA DE TESTES
-    int i;
-    cartas baralho[NUMERO_DE_CARTAS];
-    
-    iniciar_baralho(baralho);
-    
-    for(i = 0 ; i < NUMERO_DE_CARTAS ; i++){
-        printf("\n%s%d%s\n", get_naipe(baralho[i]), baralho[i].numero, get_naipe(baralho[i]));
-    }
-    
-    embaralhar_cartas(baralho);
-    printf("\n\nApós embaralhar:\n\n");
-    
-    for(i = 0 ; i < NUMERO_DE_CARTAS ; i++){
-        printf("\n%s%d%s\n", get_naipe(baralho[i]), baralho[i].numero, get_naipe(baralho[i]));
-    }
-    */
     exit(EXIT_SUCCESS);
 }

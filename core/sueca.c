@@ -24,8 +24,8 @@ void embaralhar_cartas(cartas *baralho){
     srand (time(NULL));
 
     for(i = 0 ; i < 10000 ; i++){
-        rand1 = rand() % 52;
-        rand2 = rand() % 52;
+        rand1 = rand() % NUMERO_DE_CARTAS;
+        rand2 = rand() % NUMERO_DE_CARTAS;
         carta_tmp = baralho[rand1];
         baralho[rand1] = baralho[rand2];
         baralho[rand2] = carta_tmp;
